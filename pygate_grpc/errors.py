@@ -1,5 +1,6 @@
-import grpc
 import logging
+
+import grpc
 
 from pygate_grpc.exceptions import GRPCNotAvailableException
 

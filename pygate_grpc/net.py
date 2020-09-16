@@ -1,5 +1,7 @@
-import grpc
 import logging
+
+import grpc
+
 import proto.net_rpc_pb2 as net_rpc_pb2
 import proto.net_rpc_pb2_grpc as net_rpc_pb2_grpc
 
@@ -19,11 +21,11 @@ class NetClient(object):
         req = net_rpc_pb2.PeersRequest()
         return self.client.Peers(req)
 
-    def find_peer(self, peer_id:str) -> net_rpc_pb2.FindPeerResponse:
+    def find_peer(self, peer_id: str) -> net_rpc_pb2.FindPeerResponse:
         req = net_rpc_pb2.FindPeerRequest(peer_id=peer_id)
         return self.client.FindPeer(req)
 
-    def connect_peer(self, peer_addr_info:net_rpc_pb2.PeerAddrInfo) -> net_rpc_pb2.ConnectPeerResponse:
+    def connect_peer(self, peer_addr_info: net_rpc_pb2.PeerAddrInfo) -> net_rpc_pb2.ConnectPeerResponse:
         req = net_rpc_pb2.ConnectPeerRequest(peer_info=peer_addr_info)
         return self.client.ConnectPeer(req)
 

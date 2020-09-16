@@ -1,5 +1,4 @@
-from proto import ffs_rpc_pb2
-from pygate_grpc import health, faults, deals, ffs, wallet, net
+from pygate_grpc import deals, faults, ffs, health, net, wallet
 
 
 class PowerGateClient(object):

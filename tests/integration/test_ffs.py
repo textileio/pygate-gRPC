@@ -1,8 +1,9 @@
 import logging
-import pytest
 import time
 
-from proto.ffs_rpc_pb2 import CreateResponse, StageRequest, AddrInfo
+import pytest
+
+from proto.ffs_rpc_pb2 import AddrInfo, CreateResponse, StageRequest
 from pygate_grpc.client import PowerGateClient
 
 logger = logging.getLogger(__name__)
@@ -55,9 +56,7 @@ def test_grpc_ffs_list_wallet(pygate_client: PowerGateClient, ffs_instance):
     assert res.addrs[0].type == "bls"
 
 
-def test_create_new_wallet_address(
-        pygate_client: PowerGateClient, ffs_instance: CreateResponse
-):
+def test_create_new_wallet_address(pygate_client: PowerGateClient, ffs_instance: CreateResponse):
     new_addr_name = "test"
     addr = pygate_client.ffs.addrs_new(name=new_addr_name, token=ffs_instance.token)
 
