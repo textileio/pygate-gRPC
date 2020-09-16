@@ -35,7 +35,7 @@ def test_grpc_wallet_balance(pygate_client: PowerGateClient):
     assert new_res is not None
 
     # Wait a bit for the transaction to finish.
-    time.sleep(20)
+    time.sleep(10)
 
     balance_res = pygate_client.wallet.balance(new_res.address)
     assert type(balance_res) is BalanceResponse
@@ -61,9 +61,10 @@ def test_send_file(pygate_client: PowerGateClient):
     pygate_client.wallet.send_fil(sender_addr, receiver_addr, 1)
 
     # Wait a bit for transaction to complete
-    time.sleep(20)
+    time.sleep(10)
     after_sender_fil = pygate_client.wallet.balance(sender_addr)
     after_receiver_fil = pygate_client.wallet.balance(receiver_addr)
 
-    assert (before_sender_fil.balance - 1) == after_sender_fil.balance
-    assert (before_receiver_fil.balance + 1) == after_receiver_fil.balance
+    # There is fee involved with the transaction, so can't do exact assertion.
+    assert before_sender_fil.balance > after_sender_fil.balance
+    assert before_receiver_fil.balance < after_receiver_fil.balance
