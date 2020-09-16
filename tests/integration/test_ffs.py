@@ -79,14 +79,14 @@ def test_send_fil(pygate_client: PowerGateClient, ffs_instance: CreateResponse):
     receiver_addr = pygate_client.ffs.addrs_new(name=receiver_addr_name, token=ffs_instance.token)
 
     # Sleep a bit to wait for initialization
-    time.sleep(10)
+    time.sleep(6)
     before_sender_fil = pygate_client.wallet.balance(sender_addr.addr)
     before_receiver_fil = pygate_client.wallet.balance(receiver_addr.addr)
 
     pygate_client.ffs.send_fil(sender_addr.addr, receiver_addr.addr, 1, token=ffs_instance.token)
 
     # Wait a bit for transaction to complete
-    time.sleep(10)
+    time.sleep(6)
     after_sender_fil = pygate_client.wallet.balance(sender_addr.addr)
     after_receiver_fil = pygate_client.wallet.balance(receiver_addr.addr)
 
